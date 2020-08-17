@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Offline FMS</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <script>
+            const main_url = "https://staging.fixmystreet.com/";
+            const interval = setInterval(() => {
+                const h = document.getElementById("header");
+                const p = document.getElementById("message");
+                fetch("https://staging.fixmystreet.com/cobrands/fixmystreet.com/images/mysoc-footer/icon-github.png", { mode: 'no-cors', credentials: 'omit', cache: 'reload'})
+                .then(response => {
+                    console.log(response);
+                    p.innerHTML = "";
+                    if (response.ok) {
+                        h.innerHTML = "Online";
+                        p.innerHTML = "Redirecting to FMS homepage...";
+                        clearInterval(interval);
+                        setTimeout(() => { window.location.href = main_url } , 1000);
+                    } else {
+                        h.innerHTML = "Offline";
+                    }
+                })
+                .catch(function(error) {
+                    h.innerHTML = "Offline";
+                    p.innerHTML = error.message;
+                    console.log(arguments);
+                });
+            }, 1000);
+        </script>
+    </head>
+    <body>
+        <h1 id=header>Offline</h1>
+        <p id=message></p>
+    </body>
+</html>
