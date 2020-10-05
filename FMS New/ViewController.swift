@@ -89,10 +89,14 @@ class ViewController: UIViewController {
     func setupWebView() {
         // set up webview
 
+        let config = WKWebViewConfiguration()
+        // only use approved domains for content
+        if #available(iOS 14.0, *) {
+            config.limitsNavigationsToAppBoundDomains = true
+        }
         // allow local offline JS to do things
         // XXX this is a private API and might cause App Store problems..?
-        let config = WKWebViewConfiguration()
-        config.setValue(true, forKey: "allowUniversalAccessFromFileURLs")
+        /*config.setValue(true, forKey: "allowUniversalAccessFromFileURLs")*/
 
         webView = WKWebView(frame: CGRect(x: 0, y: 0, width: webViewContainer.frame.width, height: webViewContainer.frame.height), configuration: config)
         webView.navigationDelegate = self
@@ -279,6 +283,9 @@ extension ViewController: WKNavigationDelegate {
     // didFailProvisionalNavigation
     // == we are offline / page not available
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        if #available(iOS 14.0, *) {
+            return;
+        }
         // show offline screen
 //        offlineView.isHidden = false
 //        webViewContainer.isHidden = true
