@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24F52AA725389296002335FB /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 24F52AA625389296002335FB /* style.css */; };
 		2D504BEF1FA100E20019B279 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504BEE1FA100E20019B279 /* AppDelegate.swift */; };
 		2D504BF11FA100E20019B279 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D504BF01FA100E20019B279 /* ViewController.swift */; };
 		2D504BF41FA100E20019B279 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D504BF21FA100E20019B279 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24F52AA625389296002335FB /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		2D504BEB1FA100E20019B279 /* FMS New.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FMS New.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D504BEE1FA100E20019B279 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D504BF01FA100E20019B279 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		55E6069B24EA92960075768C /* offline */ = {
 			isa = PBXGroup;
 			children = (
+				24F52AA625389296002335FB /* style.css */,
 				55E6069C24EA92C50075768C /* offline.html */,
 			);
 			path = offline;
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D504BFC1FA100E20019B279 /* LaunchScreen.storyboard in Resources */,
+				24F52AA725389296002335FB /* style.css in Resources */,
 				2D6EEE561FCB2FCB0054837D /* Localizable.strings in Resources */,
 				2D504BF91FA100E20019B279 /* Assets.xcassets in Resources */,
 				55E6069D24EA92C50075768C /* offline.html in Resources */,
