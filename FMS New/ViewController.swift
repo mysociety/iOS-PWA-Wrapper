@@ -203,7 +203,7 @@ class ViewController: UIViewController {
 
     // load startpage
     func loadAppUrl() {
-        let urlRequest = URLRequest(url: webAppUrl!)
+        let urlRequest = URLRequest(url: webAppUrl!, cachePolicy: .reloadRevalidatingCacheData)
         webView.load(urlRequest)
     }
     
