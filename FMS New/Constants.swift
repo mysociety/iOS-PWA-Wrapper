@@ -17,7 +17,7 @@ let menuButtonJavascript = """
     console.log("hello world");
 """
 let useUserAgentPostfix = true
-let userAgentPostfix = "iOSPWA"
+let userAgentPostfix = "FixMyStreet (iOSPWA)"
 let useCustomUserAgent = false
 let customUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_1 like Mac OS X) AppleWebKit/604.2.10 (KHTML, like Gecko) Mobile/15A8401"
 
