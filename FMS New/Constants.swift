@@ -10,9 +10,10 @@ import UIKit
 
 // Basic App-/WebView-configuration
 let appTitle = "FixMyStreet"
-let webAppUrl = URL(string: "https://staging.fixmystreet.com/")
-let allowedOrigin = "staging.fixmystreet.com"
-let menuButtonTitle = NSLocalizedString("menu", comment: "")
+let webAppUrl = URL(string: "https://www.fixmystreet.com/")
+let serviceWorkerURL = URL(string: "https://www.fixmystreet.com/service-worker.js")
+let allowedOrigin = "www.fixmystreet.com"
+let menuButtonTitle = NSLocalizedString("report", comment: "")
 let menuButtonJavascript = """
     console.log("hello world");
 """

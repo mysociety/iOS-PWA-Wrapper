@@ -51,11 +51,7 @@ class ViewController: UIViewController {
     }
     // open menu in page, or fire alternate function on large screens
     @IBAction func onRightButtonClick(_ sender: Any) {
-        if (changeMenuButtonOnWideScreens && isWideScreen()) {
-            webView.evaluateJavaScript(alternateRightButtonJavascript, completionHandler: nil)
-        } else {
-            webView.evaluateJavaScript(menuButtonJavascript, completionHandler: nil)
-        }
+        loadAppUrl()
     }
     // reload page from offline screen
     @IBAction func onOfflineButtonClick(_ sender: Any) {
@@ -81,7 +77,7 @@ class ViewController: UIViewController {
         }
         if (keyPath == #keyPath(WKWebView.estimatedProgress)) {
             progressBar.progress = Float(webView.estimatedProgress)
-            rightButton.isEnabled = (webView.estimatedProgress == 1)
+            //rightButton.isEnabled = (webView.estimatedProgress == 1)
         }
     }
     
@@ -179,21 +175,6 @@ class ViewController: UIViewController {
             self.navigationController?.navigationBar.barStyle = UIBarStyle.black
         }
         
-        // handle menu button changes
-        /// set default
-        rightButton.title = menuButtonTitle
-        rightButton.tintColor = UIColor.clear
-        /// update if necessary
-        updateRightButtonTitle(invert: false)
-        /// create callback for device rotation
-        let deviceRotationCallback : (Notification) -> Void = { _ in
-            // this fires BEFORE the UI is updated, so we check for the opposite orientation,
-            // if it's not the initial setup
-            self.updateRightButtonTitle(invert: true)
-        }
-        /// listen for device rotation
-        NotificationCenter.default.addObserver(forName: .UIDeviceOrientationDidChange, object: nil, queue: .main, using: deviceRotationCallback)
-
         /*
         // @DEBUG: test offline view
         offlineView.isHidden = false
@@ -230,35 +211,6 @@ class ViewController: UIViewController {
             return false
         }
     }
-    
-    // UI Helper method to update right button text according to available screen width
-    func updateRightButtonTitle(invert: Bool) {
-        if (changeMenuButtonOnWideScreens) {
-            // first, check if device is wide enough to
-            if (UIScreen.main.fixedCoordinateSpace.bounds.height < wideScreenMinWidth) {
-                // long side of the screen is not long enough, don't need to update
-                return
-            }
-            // second, check if both portrait and landscape would fit
-            if (UIScreen.main.fixedCoordinateSpace.bounds.height >= wideScreenMinWidth
-                && UIScreen.main.fixedCoordinateSpace.bounds.width >= wideScreenMinWidth) {
-                // both orientations are considered "wide"
-                rightButton.title = alternateRightButtonTitle
-                return
-            }
-            
-            // if we land here, check the current screen width.
-            // we need to flip it around in some cases though, as our callback is triggered before the UI is updated
-            let changeToAlternateTitle = invert
-                ? !isWideScreen()
-                : isWideScreen()
-            if (changeToAlternateTitle) {
-                rightButton.title = alternateRightButtonTitle
-            } else {
-                rightButton.title = menuButtonTitle
-            }
-        }
-    }
 }
 
 // WebView Event Listeners
@@ -279,6 +231,7 @@ extension ViewController: WKNavigationDelegate {
         activityIndicator.stopAnimating()
         
         leftButton.isEnabled = webView.canGoBack
+        rightButton.isEnabled = true
     }
     // didFailProvisionalNavigation
     // == we are offline / page not available
